@@ -1,0 +1,27 @@
+package com.example.open.gl.experiment;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class SampleGame extends Activity {
+
+	MyGLSurfaceView mSurfaceview;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mSurfaceview=new MyGLSurfaceView(this);
+		setContentView(mSurfaceview);
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mSurfaceview.onPause();
+	}
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+	}
+
+}

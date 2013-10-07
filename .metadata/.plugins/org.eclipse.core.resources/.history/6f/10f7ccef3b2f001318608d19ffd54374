@@ -1,0 +1,42 @@
+package com.example.open.gl.experiment;
+
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
+import android.os.Bundle;
+import android.widget.Toast;
+
+public class FunWithTriangles extends Activity {
+
+	MyGLSurfaceView mSurfaceview;
+	boolean mIfSupportsgles;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		ActivityManager mManager=(ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+	    ConfigurationInfo mInfo=mManager.getDeviceConfigurationInfo();
+		mIfSupportsgles=mInfo.reqGlEsVersion>=0x2000;
+		if(mIfSupportsgles){
+			mSurfaceview = new MyGLSurfaceView(this);
+			//mSurfaceview.setEGLContextClientVersion(2);
+			setContentView(mSurfaceview);
+		}else{
+			Toast.makeText(this,"Open GlEs V2 unvailable", Toast.LENGTH_LONG).show();
+			return;
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mSurfaceview.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mSurfaceview.onResume();
+
+	}
+}

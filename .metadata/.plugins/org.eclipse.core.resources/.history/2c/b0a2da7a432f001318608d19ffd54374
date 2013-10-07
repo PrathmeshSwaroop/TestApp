@@ -1,0 +1,11 @@
+package com.bar.gl;
+
+import android.content.Context;
+
+public class GLSurfaceView extends android.opengl.GLSurfaceView{
+
+	public GLSurfaceView(Context context) {
+		super(context);
+		
+	}
+}

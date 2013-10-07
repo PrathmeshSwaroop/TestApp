@@ -1,0 +1,15 @@
+package com.bar.gl;
+
+import com.bar.renderer.MyGlRenderer;
+
+import android.content.Context;
+
+public class PlayGLSurfaceView extends android.opengl.GLSurfaceView{
+
+	public PlayGLSurfaceView(Context context) {
+		super(context);
+		this.setEGLContextClientVersion(2);
+		MyGlRenderer renderer=new MyGlRenderer();
+		this.setRenderer(renderer);
+	}
+}

@@ -1,0 +1,69 @@
+package com.bar.shapes;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
+import android.opengl.GLES20;
+
+import com.bar.renderer.MyGLRenderer;
+
+
+public class Triangles {
+	
+    private final FloatBuffer vertexBuffer;
+    private final int mProgram;
+    private int mPositionHandle;
+    private int mColorHandle;
+    private int mMVPMatrixHandle;
+    public static final int COORDS_PER_VERTEX = 3;
+    
+	private final String vertexShaderCode =
+		        "uniform mat4 uMVPMatrix;" +
+		        "attribute vec4 vPosition;" +
+		        "void main() {" +
+		        "  gl_Position = vPosition * uMVPMatrix;" +
+		        "}";
+
+	private final String fragmentShaderCode =
+		        "precision mediump float;" +
+		        "uniform vec4 vColor;" +
+		        "void main() {" +
+		        "  gl_FragColor = vColor;" +
+		        "}";
+
+	// in counterclockwise order:
+	
+	public static float triangleCoords[] = { 
+		         0.0f,  0.622008459f, 0.0f,  
+		        -0.5f, -0.311004243f, 0.0f,  
+		         0.5f, -0.311004243f, 0.0f   
+		    };
+	
+	private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
+	private final int vertexStride = COORDS_PER_VERTEX * 4;
+
+	public static float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+
+	public Triangles() {
+		        
+	        ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * 4);
+		        bb.order(ByteOrder.nativeOrder());
+		        vertexBuffer = bb.asFloatBuffer();
+		        // add the coordinates to the FloatBuffer
+		        vertexBuffer.put(triangleCoords);
+		        // set the buffer to read the first coordinate
+		        vertexBuffer.position(0);
+
+		        // prepare shaders and OpenGL program
+		        int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+		                                                   vertexShaderCode);
+		        int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+		                                                     fragmentShaderCode);
+
+		        mProgram = GLES20.glCreateProgram();             // create empty OpenGL Program
+		        GLES20.glAttachShader(mProgram, vertexShader);   // add the vertex shader to program
+		        GLES20.glAttachShader(mProgram, fragmentShader); // add the fragment shader to program
+		        GLES20.glLinkProgram(mProgram);                  // create OpenGL program executables
+
+}

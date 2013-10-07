@@ -1,0 +1,28 @@
+package com.bar.play;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+import com.bar.gl.PlayGLSurfaceView;
+
+public class StartActivity extends Activity {
+
+	private PlayGLSurfaceView mMyOwnView;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		mMyOwnView=new PlayGLSurfaceView(this);
+		setContentView(mMyOwnView);
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mMyOwnView.onPause();
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mMyOwnView.onResume();
+	}
+	
+}

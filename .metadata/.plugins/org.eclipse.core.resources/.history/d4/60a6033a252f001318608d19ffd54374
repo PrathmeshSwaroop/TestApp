@@ -1,0 +1,8 @@
+package com.example.open.gl.experiment;
+
+import java.nio.FloatBuffer;
+
+public class Triangle {
+	private FloatBuffer mTriangleVerticesBuff;
+	
+}

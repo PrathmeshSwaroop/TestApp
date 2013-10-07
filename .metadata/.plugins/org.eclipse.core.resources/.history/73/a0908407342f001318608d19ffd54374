@@ -1,0 +1,97 @@
+package com.example.open.gl.experiment;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+import android.content.Context;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
+
+public class MyRenderer implements GLSurfaceView.Renderer {
+	@SuppressWarnings("unused")
+	private Context mContext;
+	private float mPositionOfTriangle[];
+	private float mColorOfTriangle[];
+	private int mPositionHandle;
+	private int mColorHandle;
+	private float mViewMatrix[];
+	private int muMVPMatrixHandle;
+	private int mProgramHandle;
+	private float mEyeX;
+	private float mEyeY;
+	private float mEyeZ;
+	
+	private float mLookX;
+	private float mLookY;
+	private float mLookZ;
+	
+	private float mUpX;
+	private float mUpY;
+	private float mUpZ;
+	
+	private Triangle mTriangle;
+	
+	
+	
+	public MyRenderer(Context context){
+		mContext=context;
+	}
+	@Override
+	public void onDrawFrame(GL10 gl) {
+		
+	}
+	@Override
+	public void onSurfaceChanged(GL10 gl, int width, int height) {
+		GLES20.glViewport(0, 0, width, height);
+		float ratio = (float) width / height;
+	    Matrix.frustumM(mProjMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+
+	}
+	@Override
+	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+		clearcolor();
+		initShape();
+		initProjection();
+		setUpShaders();
+	}
+	private void initShape() {
+		mTriangle=new Triangle();
+		mTriangle.setTriangleColorCoords(mColorOfTriangle);
+		mTriangle.setTriangleCoords(mPositionOfTriangle);
+		mProgramHandle=GLES20.glCreateProgram();
+		
+		muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgramHandle, "uMVPMatrix");
+	}
+	private void setUpShaders() {
+		
+		int vertexShaderHandle=GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
+		int colorshaderHanlde=GLES20.glCreateShader(GLES20.GL_FRAGMENT_SHADER);
+		if(vertexShaderHandle!=0 && colorshaderHanlde!=0 && programHandle!=0){
+			
+			GLES20.glShaderSource(vertexShaderHandle, mTriangle.getVertexShader());
+			GLES20.glShaderSource(colorshaderHanlde, mTriangle.getFragmentShader());
+			
+			
+		}
+	}
+	private void clearcolor() {
+		GLES20.glClearColor(0.5f,0.5f, 0.5f, 0.5f);
+	}
+	private void initProjection() {
+		
+		mEyeX=0.0f;
+		mEyeY=0.0f;
+		mEyeZ=1.5f;
+		
+		mLookX=0.0f;
+		mLookY=0.0f;
+		mLookZ=-5.0f;
+		
+		mUpX=0.0f;
+		mUpY=0.1f;
+		mUpZ=0.0f;
+		
+		Matrix.setLookAtM(mViewMatrix,0,mEyeX, mEyeY, mEyeZ,mLookX, mLookY, mLookZ, mUpX, mUpY, mUpZ);
+	}
+}

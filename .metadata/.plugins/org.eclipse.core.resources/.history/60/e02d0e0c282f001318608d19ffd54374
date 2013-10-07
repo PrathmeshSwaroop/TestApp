@@ -1,0 +1,60 @@
+package com.example.open.gl.experiment;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
+public class Triangle {
+	private FloatBuffer mTriangleVerticesBuff;
+	private final int BYTES_PER_FLOAT=4;
+	public float mTriangleCoords[];
+	public float mTriangleColorCoords[];
+	public final String mVertexshader="uniform mat4 mMVPMatrix;"
+			+ "attribute vec4 vPosition;"
+			+ "void main(){"
+			+ "gl_Position=mMVPMatrix*vPosition;"
+			+ "}";
+	
+	public final String mFragmentShader="precision mediump float;"
+			+ "varying vec4 vColor;"
+			+ "void main(){"
+			+ "gl_FragColor=vColor;"
+			+ "}";
+	
+	
+	public float[] getTriangleColorCoords() {
+		return mTriangleColorCoords;
+	}
+	public void setTriangleColorCoords(float[] triangleColorCoords) {
+		this.mTriangleColorCoords = triangleColorCoords;
+	}
+	public float[] getTriangleCoords() {
+		return mTriangleCoords;
+	}
+	public void setTriangleCoords(float[] triangleCoords) {
+		this.mTriangleCoords = triangleCoords;
+	}
+	public FloatBuffer getColorFloatBuffer(){
+		if(!(mTriangleColorCoords.length<1)){
+			mTriangleVerticesBuff=ByteBuffer
+							.allocate(BYTES_PER_FLOAT*mTriangleColorCoords.length)
+							.order(ByteOrder.nativeOrder()).asFloatBuffer();
+			mTriangleVerticesBuff.put(mTriangleColorCoords).position(0);
+			return mTriangleVerticesBuff;
+		}else{
+			return null;
+		}
+	}
+	public FloatBuffer getPositionFloatBuffer(){
+		if(!(mTriangleCoords.length<1)){
+			mTriangleVerticesBuff=ByteBuffer
+							.allocate(BYTES_PER_FLOAT*mTriangleCoords.length)
+							.order(ByteOrder.nativeOrder()).asFloatBuffer();
+			mTriangleVerticesBuff.put(mTriangleCoords).position(0);
+			return mTriangleVerticesBuff;
+		}else{
+			return null;
+		}
+	}
+	
+}

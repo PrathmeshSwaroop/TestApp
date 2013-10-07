@@ -1,0 +1,5 @@
+package com.bar.renderer;
+
+public class MyGlRenderer {
+
+}

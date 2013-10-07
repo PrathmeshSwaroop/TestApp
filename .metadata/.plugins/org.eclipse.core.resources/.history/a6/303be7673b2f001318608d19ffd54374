@@ -1,0 +1,15 @@
+package com.example.open.gl.experiment;
+
+import android.content.Context;
+import android.opengl.GLSurfaceView;
+
+public class MyGLSurfaceView extends GLSurfaceView{
+
+	MyRenderer mRendered;
+	public MyGLSurfaceView(Context context) {
+		super(context);
+		mRendered=new MyRenderer(context);
+		setRenderer(mRendered);
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.example.open.gl.experiment;
+
+import java.nio.FloatBuffer;
+
+public class Triangle {
+	private FloatBuffer mTriangleVerticesBuff;
+	private final int BYTES_PER_FLOAT=4;
+	public float mTriangleCoords[];
+	public float mTriangleColorCoords[];
+	
+	public float[] getTriangleCoords() {
+		return mTriangleCoords;
+	}
+	public void setTriangleCoords(float[] triangleCoords) {
+		this.mTriangleCoords = triangleCoords;
+	}
+	
+}

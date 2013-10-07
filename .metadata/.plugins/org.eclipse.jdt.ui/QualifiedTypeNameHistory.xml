@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="android.opengl.GLSurfaceView"/>
+<fullyQualifiedTypeName name="android.opengl.GLSurfaceView.Renderer"/>
+<fullyQualifiedTypeName name="com.example.open.gl.experiment.MyRenderer"/>
+<fullyQualifiedTypeName name="com.example.open.gl.experiment.MyGLSurfaceView"/>
+<fullyQualifiedTypeName name="java.nio.FloatBuffer"/>
+</qualifiedTypeNameHistroy>

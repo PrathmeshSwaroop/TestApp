@@ -1,0 +1,71 @@
+package com.example.open.gl.experiment;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+import android.content.Context;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import android.opengl.Matrix;
+
+public class MyRenderer implements GLSurfaceView.Renderer {
+	@SuppressWarnings("unused")
+	private Context mContext;
+	private float mPositionOfTriangle[];
+	private float mColorOfTriangle[];
+	private int mPositionHandle;
+	private int mColorHandle;
+	private float mviewMatrix[];
+	
+	private float mEyeX;
+	private float mEyeY;
+	private float mEyeZ;
+	
+	private float mLookX;
+	private float mLookY;
+	private float mLookZ;
+	
+	private float mUpX;
+	private float mUpY;
+	private float mUpZ;
+	
+	
+	
+	
+	public MyRenderer(Context context){
+		mContext=context;
+	}
+	@Override
+	public void onDrawFrame(GL10 gl) {
+		
+	}
+	@Override
+	public void onSurfaceChanged(GL10 gl, int width, int height) {
+		
+	}
+	@Override
+	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+		clearcolor();
+		initProjection();
+		
+	}
+	private void clearcolor() {
+		GLES20.glClearColor(0.5f,0.5f, 0.5f, 0.5f);
+	}
+	private void initProjection() {
+		
+		mEyeX=0.0f;
+		mEyeY=0.0f;
+		mEyeZ=1.5f;
+		
+		mLookX=0.0f;
+		mLookY=0.0f;
+		mLookZ=-5.0f;
+		
+		mUpX=
+		mUpY=
+		mUpZ=
+		Matrix.setLookAtM(mviewMatrix,0,mEyeX, mEyeY, mEyeZ,mLookX, mLookY, mLookZ, upX, upY, upZ);
+		
+	}
+}

@@ -1,0 +1,34 @@
+package com.bar.renderer;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+import android.opengl.GLSurfaceView;
+
+@SuppressWarnings("unused")
+public class MyGlRenderer implements GLSurfaceView.Renderer {
+
+	private final float[] mMVPMatrix = new float[16];
+    private final float[] mProjMatrix = new float[16];
+    private final float[] mVMatrix = new float[16];
+    private final float[] mRotationMatrix = new float[16];
+
+    public volatile float mAngle;
+	
+	
+	
+	@Override
+	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+		
+	}
+	
+	@Override
+	public void onDrawFrame(GL10 gl) {
+		
+	}
+
+	@Override
+	public void onSurfaceChanged(GL10 gl, int width, int height) {
+		
+	}
+}

@@ -1,0 +1,34 @@
+package com.example.open.gl.experiment;
+
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+
+import android.content.Context;
+import android.opengl.GLSurfaceView;
+
+public class MyRenderer implements GLSurfaceView.Renderer {
+	@SuppressWarnings("unused")
+	private Context mContext;
+	private float mPositionOfTriangle[];
+	private float mColorOfTriangle[];
+	private int mPositionHandle;
+	private int mColorHandle;
+	
+	
+	
+	public MyRenderer(Context context){
+		mContext=context;
+	}
+	@Override
+	public void onDrawFrame(GL10 gl) {
+		
+	}
+	@Override
+	public void onSurfaceChanged(GL10 gl, int width, int height) {
+		
+	}
+	@Override
+	public void onSurfaceCreated(GL10 gl, EGLConfig config) {
+		
+	}
+}

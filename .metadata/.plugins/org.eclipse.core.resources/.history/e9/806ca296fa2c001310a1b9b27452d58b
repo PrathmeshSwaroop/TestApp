@@ -1,0 +1,7 @@
+package com.example.open.gl.experiment;
+
+public class Pyramid {
+	private static final String mVertexShader="";
+	
+
+}

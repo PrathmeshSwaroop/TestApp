@@ -1,0 +1,19 @@
+package com.example.open.gl.experiment;
+
+import java.nio.FloatBuffer;
+
+public class Pyramid {
+	private final String mVertexShader = "attribute vec4 vPosition;";
+	private final String mFragmentShader = 
+			"precision mediump float;"
+			+ "uniform vec4 vColor;" + "void main() {"
+			+ "  gl_FragColor = vColor;" + "}";
+	
+	private FloatBuffer mVertextBuffer;
+	private int mProgram;
+	private int mPositionHandle;
+	private int mIndicesHandle;
+	private int mColorHandle;
+	private final int COORDS_PER_VERTEX = 3;
+	
+}
